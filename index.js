@@ -83,4 +83,5 @@ function comingMovie() {
 
 window.addEventListener("load", () => {
   nowMovie();
+  // comingMovie();
 });

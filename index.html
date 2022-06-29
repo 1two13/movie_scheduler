@@ -3,28 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>무비 스케쥴러</title>
   </head>
   <body>
-    <h1>무비 스케쥴러 입니다.</h1>
+    <h1 id="title">무비 스케쥴러</h1>
+    <div id="changeMovie">
+      <span onClick="nowPlaying()">현재 상영작</span>
+      <span onClick="comingSoon()">개봉 예정작</span>
+    </div>
+    <hr />
     <div>
-      <select id="select" onchange="changeSelect()">
-        <option value="nowPlaying">현재 상영작</option>
-        <option value="upcoming">개봉 예정작</option>
-      </select>
       <input type="text" />
     </div>
     <div id="movieBox"></div>
     <script src="./index.js"></script>
     <script>
-      function changeSelect() {
-        let select = document.getElementById("select");
-        let movieBox = document.getElementById("movieBox");
-        if (select.value === "nowPlaying") nowMovie();
-        else {
-          movieBox.innerText = "";
-          comingMovie();
-        }
+      function nowPlaying() {
+        nowMovie();
+      }
+      function comingSoon() {
+        comingMovie();
       }
     </script>
   </body>
