@@ -10,7 +10,7 @@
     <div>
       <select id="select" onchange="changeSelect()">
         <option value="nowPlaying">현재 상영작</option>
-        <option value="comingSoon">개봉 예정작</option>
+        <option value="upcoming">개봉 예정작</option>
       </select>
       <input type="text" />
     </div>
@@ -19,7 +19,12 @@
     <script>
       function changeSelect() {
         let select = document.getElementById("select");
+        let movieBox = document.getElementById("movieBox");
         if (select.value === "nowPlaying") nowMovie();
+        else {
+          movieBox.innerText = "";
+          comingMovie();
+        }
       }
     </script>
   </body>
