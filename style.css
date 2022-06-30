@@ -1,1 +1,32 @@
+body {
+  margin: 0px 150px 0px 150px;
+  top: 0;
+}
 
+#title {
+  margin-bottom: 10px;
+}
+
+#changeMovie {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+#changeMovie > span {
+  margin-right: 8px;
+}
+
+.changeColor {
+  color: #ff4256;
+}
+
+hr {
+  border: solid;
+  margin: 3px 0px 15px 0px;
+}
+
+input {
+  width: 30%;
+  margin-bottom: 10px;
+}

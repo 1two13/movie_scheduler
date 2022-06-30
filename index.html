@@ -9,20 +9,28 @@
   <body>
     <h1 id="title">무비 스케쥴러</h1>
     <div id="changeMovie">
-      <span onClick="nowPlaying()">현재 상영작</span>
+      <span class="changeColor" onClick="nowPlaying()">현재 상영작</span>
       <span onClick="comingSoon()">개봉 예정작</span>
     </div>
     <hr />
-    <div>
-      <input type="text" />
-    </div>
+    <input type="text" />
     <div id="movieBox"></div>
     <script src="./index.js"></script>
     <script>
+      const changeMovieFC = document.querySelector(
+        "#changeMovie span:first-child"
+      );
+      const changeMovieLC = document.querySelector(
+        "#changeMovie span:last-child"
+      );
       function nowPlaying() {
+        changeMovieLC.classList.remove("changeColor");
+        changeMovieFC.classList.add("changeColor");
         nowMovie();
       }
       function comingSoon() {
+        changeMovieFC.classList.remove("changeColor");
+        changeMovieLC.classList.add("changeColor");
         comingMovie();
       }
     </script>
