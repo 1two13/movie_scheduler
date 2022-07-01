@@ -9,7 +9,7 @@
   <body>
     <h1 id="title">무비 스케쥴러</h1>
     <div id="changeMovie">
-      <span class="changeColor" onClick="nowPlaying()">현재 상영작</span>
+      <span class="changeColor" onClick="onClickChart()">무비 차트</span>
       <span onClick="comingSoon()">개봉 예정작</span>
     </div>
     <hr />
@@ -23,15 +23,15 @@
       const changeMovieLC = document.querySelector(
         "#changeMovie span:last-child"
       );
-      function nowPlaying() {
+      function onClickChart() {
         changeMovieLC.classList.remove("changeColor");
         changeMovieFC.classList.add("changeColor");
-        nowMovie();
+        movieChart();
       }
       function comingSoon() {
         changeMovieFC.classList.remove("changeColor");
         changeMovieLC.classList.add("changeColor");
-        comingMovie();
+        displayInit();
       }
     </script>
   </body>

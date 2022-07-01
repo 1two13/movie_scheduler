@@ -1,7 +1,11 @@
-const key = "ec0349e18bd5a15f1fcf54bad2b7f06c";
+const key = "f5eef3421c602c6cb7ea224104795888";
 const movieBox = document.getElementById("movieBox");
+let year = new Date().getFullYear();
+let curPage = 1;
+let movieList = [];
 
-function nowMovie() {
+// 무비차트를 클릭할 때 실행되는 함수
+function movieChart() {
   // 어제 날짜 구하기
   let today = new Date();
   let yesterday = new Date(today.setDate(today.getDate() - 1));
@@ -46,42 +50,53 @@ function nowMovie() {
     .catch((err) => alert(err));
 }
 
-function comingMovie() {
-  let year = new Date().getFullYear();
-  let curPage = 1;
-
-  // 개봉 예정작 API
-  let comingApi = `https://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=${key}&openStartDt=${year}&itemPerPage=100&curPage=${curPage}`;
-
-  const reqPromise = fetch(comingApi, {
-    headers: { Accept: "application/json" },
-    method: "GET",
-  });
-
-  reqPromise
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) return res.json();
-      else return Promise.reject(new Error(`Got status ${res.status}`));
+// (totCnt / 100) 만큼 반복문으로 도는 함수
+async function init() {
+  movieBox.innerText = "";
+  while (true) {
+    let comingApi = `https://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=${key}&openStartDt=${year}&itemPerPage=100&curPage=${curPage}`;
+    // console.log(comingApi);
+    const result = await fetch(comingApi, {
+      headers: { Accept: "application/json" },
+      method: "GET",
     })
-    .then((movieBoxEl) => {
-      movieBox.innerHTML = movieBoxEl.movieListResult.movieList
-        .filter((upcoming) => upcoming.prdtStatNm === "개봉예정")
-        .sort((a, b) => a.openDt - b.openDt)
-        .map(
-          (movie) =>
-            `
-              <div>
-                <div>${movie.movieNm}</div>
-                <div>${movie.openDt} 개봉 예정</div>
-              </div>
-            `
-        )
-        .join("");
-    })
-    .catch((err) => alert(err));
+      .then((res) => res.json())
+      .catch((err) => alert(err));
+    // console.log(result.movieListResult.movieList.length);
+    if (result.movieListResult.movieList.length === 0) break;
+    movieList.push(...result.movieListResult.movieList);
+    curPage++;
+  }
+}
+
+// init 함수를 화면에 표시해주는 함수
+// 개봉 예정작을 클릭할 때 실행되는 함수
+function displayInit() {
+  movieBox.innerHTML = "";
+  // 날짜를 기준으로 오름차순으로 정렬하기
+  movieList.sort((a, b) => a.openDt - b.openDt);
+  for (let i = 0; i < movieList.length; i++) {
+    // genreAlt가 성인물(에로)를 포함하고 있지 않고, prdtStatNm가 개봉예정인 영화만 보여주기
+    if (
+      !movieList[i].genreAlt.includes("성인물(에로)") &&
+      movieList[i].prdtStatNm === "개봉예정"
+    ) {
+      movieBox.innerHTML = `
+        ${movieBox.innerHTML} 
+        <div>
+          <div>${movieList[i].movieNm}</div>
+          <div>
+            ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(
+        4,
+        6
+      )}.${movieList[i].openDt.slice(6, 8)} 개봉
+          </div>
+        </div>`;
+    }
+  }
 }
 
 window.addEventListener("load", () => {
-  nowMovie();
-  // comingMovie();
+  movieChart();
+  init();
 });
