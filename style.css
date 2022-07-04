@@ -30,3 +30,7 @@ input {
   width: 30%;
   margin-bottom: 7px;
 }
+
+img {
+  display: block;
+}

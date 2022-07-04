@@ -33,18 +33,19 @@ function movieChart() {
     })
     .then((movieBoxEl) => {
       movieBox.innerHTML = movieBoxEl.boxOfficeResult.dailyBoxOfficeList
-        .map(
-          (movie) =>
-            ` 
-              <div>
-                <div>No.${movie.rank}</div>
-                <div>${movie.movieNm}</div> 
-                <div>누적 관객수 ${Math.round(movie.audiAcc / 10000)}만 명 | 
-                  ${movie.openDt} 개봉
-                </div>
-              </div>
-            `
-        )
+        .map((movie) => {
+          poster(movie.movieNm);
+          return ` 
+                  <div>
+                    <div id="movieInfo${movie.movieNm}">No.${movie.rank}</div>
+                    <div>${movie.movieNm}</div> 
+                    <div>누적 관객수 ${Math.round(
+                      movie.audiAcc / 10000
+                    )}만 명 | ${movie.openDt} 개봉
+                    </div>
+                  </div>
+                `;
+        })
         .join("");
     })
     .catch((err) => alert(err));
@@ -81,19 +82,45 @@ function displayInit() {
       !movieList[i].genreAlt.includes("성인물(에로)") &&
       movieList[i].prdtStatNm === "개봉예정"
     ) {
+      // prettier-ignore
       movieBox.innerHTML = `
-        ${movieBox.innerHTML} 
-        <div>
-          <div>${movieList[i].movieNm}</div>
+          ${movieBox.innerHTML} 
           <div>
-            ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(
-        4,
-        6
-      )}.${movieList[i].openDt.slice(6, 8)} 개봉
+            <div>${movieList[i].movieNm}</div>
+            <div>
+              ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(4,6)}.${movieList[i].openDt.slice(6, 8)} 개봉
+            </div>
           </div>
-        </div>`;
+        `;
     }
   }
+}
+
+// 포스터 이미지를 가져오는 함수
+function poster(movieTitle) {
+  const api_key = "0f2c484aa87ad74c786e55af836c6b4d";
+  let posterApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=ko-KR&query=${movieTitle}&page=1&include_adult=false&year=${year}`;
+
+  let reqPromise = fetch(posterApi, {
+    headers: { Accept: "application/json" },
+    method: "GET",
+  });
+
+  reqPromise
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) return res.json();
+      else return Promise.reject(new Error(`Got status ${res.status}`));
+    })
+    .then((poster) => {
+      let movieInfo = document.getElementById(`movieInfo${movieTitle}`);
+      let img = document.createElement("img");
+      let image = movieInfo.appendChild(img);
+      image.setAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w200${poster.results[0].poster_path}`
+      );
+    })
+    .catch((err) => console.log(err));
 }
 
 window.addEventListener("load", () => {
