@@ -82,10 +82,12 @@ function displayInit() {
       !movieList[i].genreAlt.includes("성인물(에로)") &&
       movieList[i].prdtStatNm === "개봉예정"
     ) {
+      poster(`${movieList[i].movieNm}`);
       // prettier-ignore
       movieBox.innerHTML = `
           ${movieBox.innerHTML} 
           <div>
+            <div id="movieInfo${movieList[i].movieNm}"></div>
             <div>${movieList[i].movieNm}</div>
             <div>
               ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(4,6)}.${movieList[i].openDt.slice(6, 8)} 개봉
