@@ -11,6 +11,7 @@ body {
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+  color: #666666;
 }
 
 #changeMovie > span {
@@ -19,6 +20,7 @@ body {
 
 .changeColor {
   color: #ff4256;
+  font-weight: 500;
 }
 
 hr {
@@ -31,6 +33,41 @@ input {
   margin-bottom: 7px;
 }
 
+#movieBox {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-left: 10px;
+}
+
+#movieInfo {
+  margin: 15px 0px 15px 0px;
+  min-width: 200px;
+  min-height: 400px;
+  color: #666666;
+}
+
+#movieInfo > div:first-child {
+  margin-right: 20px;
+  font-size: 22px;
+  font-weight: bolder;
+  color: #ff4256;
+}
+
+#movieName {
+  margin: 10px 0px 7px 0px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+}
+
+#movieDetail {
+  margin-bottom: 3px;
+  font-size: smaller;
+}
+
 img {
   display: block;
+  min-width: 230px;
+  min-height: 345px;
 }

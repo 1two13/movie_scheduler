@@ -19,7 +19,7 @@ function movieChart() {
   yesterday = `${yesterdayY}${yesterdayM}${yesterdayD}`;
 
   // 일별 박스오피스 API
-  const dayApi = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${key}&targetDt=${yesterday}`;
+  const dayApi = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${key}&targetDt=${yesterday}&itemPerPage=9`;
 
   const reqPromise = fetch(dayApi, {
     headers: { Accept: "application/json" },
@@ -36,12 +36,15 @@ function movieChart() {
         .map((movie) => {
           poster(movie.movieNm);
           return ` 
-                  <div>
-                    <div id="movieInfo${movie.movieNm}">No.${movie.rank}</div>
-                    <div>${movie.movieNm}</div> 
-                    <div>누적 관객수 ${Math.round(
-                      movie.audiAcc / 10000
-                    )}만 명 | ${movie.openDt} 개봉
+                  <div id="movieBox">
+                    <div id="movieInfo">
+                      <div id="movieInfo${movie.movieNm}">No.${movie.rank}</div>
+                      <div id="movieName">${movie.movieNm}</div> 
+                      <div id="movieDetail">${movie.openDt} 개봉</div>
+                      <div id="movieDetail">누적 관객수 ${Math.round(
+                        movie.audiAcc / 10000
+                      )}만 명 
+                      </div>
                     </div>
                   </div>
                 `;
@@ -86,11 +89,13 @@ function displayInit() {
       // prettier-ignore
       movieBox.innerHTML = `
           ${movieBox.innerHTML} 
-          <div>
-            <div id="movieInfo${movieList[i].movieNm}"></div>
-            <div>${movieList[i].movieNm}</div>
-            <div>
-              ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(4,6)}.${movieList[i].openDt.slice(6, 8)} 개봉
+          <div id="movieBox">
+            <div id="movieInfo">
+              <div id="movieInfo${movieList[i].movieNm}"></div>
+              <div id="movieName">${movieList[i].movieNm}</div>
+              <div id="movieDetail">
+                ${movieList[i].openDt.slice(0, 4)}.${movieList[i].openDt.slice(4,6)}.${movieList[i].openDt.slice(6, 8)} 개봉
+              </div>
             </div>
           </div>
         `;
