@@ -28,9 +28,7 @@ HTML 과 CSS 만 사용하여 코드를 작성하였습니다.
 > API 사용
 
 - 영화 진흥 위원회 [https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do](https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do)
-  - 박스 오피스 및 개봉 예정작을 가져오는데 사용했다.
 - TMDB [https://developers.themoviedb.org/3/search/search-movies](https://developers.themoviedb.org/3/search/search-movies)
-  - 영화 포스터를 가져오는데 사용했다.
 
 > etc
 
