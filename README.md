@@ -32,4 +32,4 @@ HTML 과 CSS 만 사용하여 코드를 작성하였습니다.
 
 > etc
 
-- **[QuerySelector is not recognising #id with space](https://stackoverflow.com/questions/63551929/queryselector-is-not-recognising-id-with-space)**
+- [QuerySelector is not recognising #id with space](https://stackoverflow.com/questions/63551929/queryselector-is-not-recognising-id-with-space)
