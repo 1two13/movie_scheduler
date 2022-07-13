@@ -119,7 +119,7 @@ function poster(movieTitle) {
       else return Promise.reject(new Error(`Got status ${res.status}`));
     })
     .then((poster) => {
-      let movieInfo = document.getElementById(`movieInfo${movieTitle}`);
+      let movieInfo = document.getElementById(`movieInfo${movieCd}`);
       let img = document.createElement("img");
       let image = movieInfo.appendChild(img);
       image.setAttribute(
