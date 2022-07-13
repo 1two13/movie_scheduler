@@ -2,7 +2,7 @@
 
 HTML 과 CSS 만 사용하여 코드를 작성하였습니다.
 
-[🙇🏻‍♀️ 노션 링크 바로 가기](https://www.notion.so/1two13/57ca71d24d4d4559a7f7fc1d73d487bb)
+[🙇🏻‍♀️ 노션 링크 바로 가기](https://1two13.notion.site/57ca71d24d4d4559a7f7fc1d73d487bb)
 
 <br/>
 💡 구현하고 싶은 것
@@ -28,10 +28,8 @@ HTML 과 CSS 만 사용하여 코드를 작성하였습니다.
 > API 사용
 
 - 영화 진흥 위원회 [https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do](https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do)
-  - 박스 오피스 및 개봉 예정작을 가져오는데 사용했다.
 - TMDB [https://developers.themoviedb.org/3/search/search-movies](https://developers.themoviedb.org/3/search/search-movies)
-  - 영화 포스터를 가져오는데 사용했다.
 
 > etc
 
-- **[QuerySelector is not recognising #id with space](https://stackoverflow.com/questions/63551929/queryselector-is-not-recognising-id-with-space)**
+- [QuerySelector is not recognising #id with space](https://stackoverflow.com/questions/63551929/queryselector-is-not-recognising-id-with-space)
